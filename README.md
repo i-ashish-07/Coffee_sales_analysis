@@ -59,8 +59,37 @@ CREATE TABLE sales (
 
 ## Business Questions and Solutions
 
-### 1. Coffee Consumers Count
+## Business Questions
 
+1. **Top 3 Products by Sales in Each City**
+   - Find the top 3 selling products for each city based on total sales.
+
+2. **Top 3 Products per City by Count of Sales**
+   - Identify which products are sold the most (by count) in each city using DENSE_RANK.
+
+3. **Average Sale vs Estimated Rent per City**
+   - Compare average total sales per customer with average estimated rent per customer in each city.
+
+4. **Estimated Coffee Consumers per City**
+   - Calculate estimated coffee consumers assuming 25% of the population consumes coffee.
+
+5. **Customer Segmentation by Sales Volume**
+   - Categorize customers into groups (e.g., High, Medium, Low) based on their total purchases.
+
+6. **City Performance Ranking**
+   - Rank cities by overall sales performance and customer engagement.
+
+7. **Potential Market Recommendation**
+   - Identify cities with high coffee consumer potential but lower actual sales — suggesting marketing opportunities.
+
+8. **Product Popularity Trend**
+   - Find the most consistently top-selling products across all cities.
+
+9. **Revenue vs Rent Efficiency**
+   - Measure how efficiently each city converts rent cost into sales (Sales-to-Rent ratio).
+
+
+### 1. Coffee Consumers Count
 **Question:** How many people in each city are estimated to consume coffee, given that 25% of the population does?
 
 ```sql
