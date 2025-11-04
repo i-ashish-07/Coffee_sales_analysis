@@ -159,36 +159,8 @@ select city_name , total_sales, total_estimated_rent, total_cx,estimated_coffee_
 round((total_estimated_rent / total_cx):: numeric,2) as avg_estimated_rent , 
 round((total_sales / total_cx):: numeric,2) as avg_sale
 from cte
-order by 2 desc;
-
--- Final Ranking Query
-WITH cte AS (
-    SELECT 
-        ci.city_name, 
-        SUM(s.total) AS total_sales, 
-        ci.estimated_rent AS total_estimated_rent, 
-        COUNT(DISTINCT c.customer_id) AS total_cx,
-        ROUND((ci.population * 0.25)/1000000, 3) AS estimated_coffee_consumer
-    FROM city AS ci
-    JOIN customers AS c ON ci.city_id = c.city_id
-    JOIN sales AS s ON c.customer_id = s.customer_id
-    JOIN products AS p ON s.product_id = p.product_id
-    GROUP BY ci.city_name, ci.estimated_rent, ci.population
-),
-city_avg AS (
-    SELECT 
-        city_name, total_sales, total_estimated_rent, total_cx,
-        estimated_coffee_consumer,
-        ROUND((total_estimated_rent / total_cx)::numeric, 2) AS avg_estimated_rent, 
-        ROUND((total_sales / total_cx)::numeric, 2) AS avg_sale
-    FROM cte
-)
-SELECT city_name, total_sales, total_estimated_rent, total_cx, estimated_coffee_consumer,
-       avg_estimated_rent, avg_sale,
-       RANK() OVER (ORDER BY total_sales DESC) AS highest_sales,
-       RANK() OVER (ORDER BY avg_estimated_rent DESC) AS rent_rank
-FROM city_avg
-ORDER BY highest_sales, rent_rank;
+order by 2 desc
+limit 3;
 
 -- BUSINESS RECOMMENDATIONS
 
